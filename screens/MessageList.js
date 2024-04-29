@@ -1,78 +1,24 @@
-import { collection, addDoc, query, orderBy, onSnapshot,where,getDoc,doc,updateDoc,arrayUnion,arrayRemove} from 'firebase/firestore';
-import React, { useEffect, useState,useLayoutEffect,Fragment} from 'react';
-import { auth, db } from '../firebase';
-// import { collection, query, where } from "firebase/firestore";
+import { query, onSnapshot, getDoc, doc } from 'firebase/firestore';
+import React, { useEffect, useState, Fragment} from 'react';
+import { db } from '../firebase';
 import {
   SafeAreaView,
-  StatusBar,
-
   StyleSheet,
-  TouchableOpacity,
+  TouchableOpacity, 
   Text,
   Image,
   FlatList,
-  ScrollView,
-  Button,
-  useColorScheme,
   View,
   Dimensions,
-
-  
 } from 'react-native';
-
 
 const MessageScreen = ({navigation,route})=>{
     const dimensions = Dimensions.get('window');
     const imageWidth = dimensions.width;
-    // const [users, setUsers] = useState(null)
-
-    // const getUsers = async ()=> {
-    //     var userList = []
-    //     console.log(route.params.user_id)
-    //     const q = query(collection(db, 'users'), where('uid','!=',route.params.user_id));
-    //     console.log(q);
-    //     const querySnapshot = await getDocs(q);
-    //     querySnapshot.forEach((doc) => {
-    //         userList.push(doc.data())
-    //     console.log(doc.id, " => ", doc.data());
-    //     });
-    //     console.log(userList);
-    //     setUsers(userList)
-    // }
-
-    // useEffect(()=>{
-    //     getUsers()
-    //   },[])
-
-
 
       const [notiUsers, setNotiUsers] = useState([])
       const [Users, setUsers] = useState([])
-  
-      // const getNotiUser = async ()=> {
-      //     const q = query(doc(db, "users", route.params.user_id));
-      //     const unsubscribe = onSnapshot(q, (snapshot) => {
-      //       var userList1 = []
-      //       console.log(snapshot.data());
-      //       if (snapshot.data().realFriend.length > 0){
-      //         snapshot.data().realFriend.forEach(
-      //           (uid) =>
-      //           {
-      //             const docRef1 = doc(db, "users", uid);
-      //             const _unsubscribe = onSnapshot(docRef1, (snapshot) => {
-      //               userList1.push(snapshot.data())
-      //             console.log(snapshot.data());
-      //             }) })}
-      //       setNotiUsers(userList1)
-            
-      //     })
-  
-      //   }
-  
-      // useEffect(()=>{
-      //     getNotiUser();
-      //   },[navigation])
-  
+
       useEffect(() => {
         const getUserContacts = () => {
           const q = query(doc(db, "users", route.params.user_id));
@@ -90,20 +36,13 @@ const MessageScreen = ({navigation,route})=>{
         getUserContacts();
       }, [navigation])
 
-
-
-
-
     return(
       <Fragment>
-        <SafeAreaView style={{ flex: 0, backgroundColor: '#F8AF00' }} />
       <View style={{backgroundColor: '#F8B000',flex:1, alignItems: 'center'}}>
-      <Image source={require('../assets/chat_hero.jpg')} style={{  width: imageWidth , height: 270, marginBottom:15, marginTop:0}} />
-
-          <View>
+      <Image source={require('../assets/download.png')} style={styles.backgroundImage} />
+          <View style={styles.Container}>
               <FlatList
                   data={notiUsers}
-                //   keyExtractor={(item)=>item.uid}
                   renderItem={({item}) => (
                   <TouchableOpacity onPress={() => navigation.navigate('Chat', {name: item.name, uid: item.uid, avatar:item.avatar})} >
                       <View style={styles.card} >
@@ -124,6 +63,19 @@ const MessageScreen = ({navigation,route})=>{
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#4E50F7',
+    alignItems: 'center',
+    justifyContent: 'center',
+},
+backgroundImage: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+},
     Contain: {
         flex: 1,
         alignItems: 'center',
@@ -136,7 +88,7 @@ const styles = StyleSheet.create({
   card: {
     width: '100%',
     height: 'auto',
-    marginHorizontal: 4,
+    marginHorizontal: 30,
     marginVertical: 6,
     flexDirection: 'row',
     flexWrap: 'wrap',

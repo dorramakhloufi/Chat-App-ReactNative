@@ -71,9 +71,8 @@ useEffect(() => {
 
     return(
       <Fragment>
-       <SafeAreaView style={{ flex:0, backgroundColor: '#FAF8E7' }} />
         <View  style={{backgroundColor: '#FF6C77',flex:1, alignItems: 'center'}}>
-          <Image source={require('../assets/Noti_hero.jpg')} style={{  width: imageWidth , height: 270, marginBottom:30, marginTop:0}} />
+        <Image source={require('../assets/download.png')} style={styles.backgroundImage} />
            
                 {/* {(notiUsers.length > 0)? */}
 
@@ -136,6 +135,13 @@ useEffect(() => {
 }
 
 const styles = StyleSheet.create({
+  backgroundImage: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+},
     Contain: {
         flex: 1,
         alignItems: 'center',

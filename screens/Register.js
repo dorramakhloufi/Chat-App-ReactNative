@@ -54,7 +54,7 @@ const Register = ({navigation}) => {
         <Fragment>
             <SafeAreaView style={{ flex: 0, backgroundColor: '#FFFFFF' }} />
         <View style={styles.container}>
-             <Image source={require('../assets/joinus.jpg')} style={{  width: imageWidth , height: 270, marginBottom:30}} />
+             <Image source={require('../assets/bird.png')} style={styles.backgroundImage} />
 
             <View style={styles.smallScreen}>
             <Input
@@ -143,8 +143,16 @@ const Register = ({navigation}) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: '#4E50F7',
         alignItems: 'center',
-        backgroundColor: '#7766F2'
+        justifyContent: 'center',
+    },
+    backgroundImage: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
     },
     button: {
         width: 370,
@@ -152,8 +160,8 @@ const styles = StyleSheet.create({
     },
     smallScreen:{
         width: 0.9 * Dimensions.get('window').width,
-        flex: 1,
-        backgroundColor:'#FFFFFF',
+        flex: 0.7,
+        backgroundColor:'rgba(255, 255, 255, 0.8)',
         paddingTop: 40,
         padding: 20,
         alignItems: 'center',
